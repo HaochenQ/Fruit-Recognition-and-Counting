@@ -11,6 +11,6 @@
 - Go to http://localhost:5000
 
 <p align="center">
-  <img src="web-app/Screen Shot 2020-02-13 at 12.03.17 pm.png" width="640px" height="480px" alt="">
+ ![image for web app](https://github.com/HaochenQ/Web-Programming/blob/master/a05/Screen%20Shot%202019-11-25%20at%205.36.14%20pm.png)
 </p>
 
