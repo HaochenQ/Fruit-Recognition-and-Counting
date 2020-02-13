@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://kit.fontawesome.com/f370051095.js" crossorigin="anonymous"></script>
+  <title>Fruit Counting</title>
+</head>
+
+<body>
+  <section class="hero is-light">
+    <div class="hero-head">
+      <div class="navbar-end">
+        <div class="navbar-item is-pulled-right">
+          <div class="field is-grouped">
+            <p class="control">
+              <a class="button is-large is-light" href="https://github.com/HaochenQ/Fruit-Recognition-and-Counting">
+                <span class="icon">
+                  <i class="fab fa-github" aria-hidden="true"></i>
+                </span>
+                <span>Github</span>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2 has-text-centered">
+          <strong>Fruit Counting</strong>
+        </h1>
+        <h2 class="subtitle is-4 has-text-centered">
+          Detect and count fruit in images
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <div id="root" style="text-align:center;">
+    <br>
+    <div id="fileName" class="file has-name" style="margin-inline-start: 29%">
+      <form id="upload-file" method="post">
+        <label class="file-label">
+          <input name="file" class="file-input" type="file" accept=".png, .jpg, .jpeg">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="file-cta">
+
+            <span class="file-icon">
+              <i class="fas fa-upload"></i>
+            </span>
+            <span class="file-label">
+              Choose your image…
+            </span>
+          </span>
+          <span class="file-name">
+            No file chosen
+          </span>
+        </label>
+      </form>
+
+      <button id="detect" class="button is-info is-light" style="margin-inline-start: 5%;">Detect</button>
+
+
+      <button id="count" class="button is-warning is-light" style="margin-inline-start: 5%;">
+        <span>Count:2</span>
+      </button>
+    </div>
+
+    <div>
+      <br>
+      <img id="input" src="/static/raw_example.png" height=480 width=640 class="center">
+      <br>
+      <img id="output" src="/static/masked_example.png" height=480 width=640 class="center">
+    </div>
+  </div>
+
+  <script>
+    const fileInput = document.querySelector('#fileName input[type=file]');
+    fileInput.onchange = () => {
+      if (fileInput.files.length > 0) {
+        const fileName = document.querySelector('#fileName .file-name');
+        fileName.textContent = fileInput.files[0].name;
+      }
+      const output = document.getElementById('input');
+      output.src = URL.createObjectURL(event.target.files[0]);
+      $("#output").hide()
+    }
+    $('#detect').click(function () {
+      var form_data = new FormData($('#upload-file')[0]);
+      $("#count").replaceWith(`<button id="loading" class="button is-loading is-light" style="margin-inline-start: 5%;">loading</button>`)
+      $.ajax({
+        type: 'POST',
+        url: '/detect',
+        data: form_data,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function (response) {
+          var image = new Image(width = 512, height = 512);
+          image.src = `data:image/png;base64,${response.image.replace(/^b'|'$/g, '')}`;
+          $("#output").attr("src", image.src)
+          $("#output").show()
+          $("#loading").replaceWith(`<button id="count" class="button is-warning is-light" style="margin-inline-start: 5%;"><span>Count:2</span></button>`)
+          $("#count span").text("Count:" + response.count);
+
+        },
+        error: function (e) {
+          console.log(e)
+        },
+      });
+    });
+  </script>
+</body>
+
+</html>
