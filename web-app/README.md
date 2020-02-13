@@ -11,6 +11,6 @@
 - Go to http://localhost:5000
 
 <p align="center">
- ![image for web app](https://github.com/HaochenQ/Web-Programming/blob/master/a05/Screen%20Shot%202019-11-25%20at%205.36.14%20pm.png)
+ ![image for web-app](https://github.com/HaochenQ/Fruit-Recognition-and-Counting/blob/haochen/web-app/Screen%20Shot%202020-02-13%20at%2012.03.17%20pm.png)
 </p>
 
