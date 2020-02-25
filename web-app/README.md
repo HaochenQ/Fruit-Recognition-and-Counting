@@ -3,7 +3,7 @@
 > Based on YOLO V3 and Mask-RCNN
 
 
-## How to use:
+## How to Use:
 
 - Clone this repo
 - Download requirements
@@ -13,6 +13,11 @@
 - Run fruit_app.py
 - Go to http://localhost:5000
 
+## Try With your Mobile Phont
+
+- Make sure your phone and laptop are in the same LAN/WiFi
+- Check the IP address of your laptop/server 
+- Go to http://Server-IP-Here:5000
 
 ![image for web-app](https://github.com/HaochenQ/Fruit-Recognition-and-Counting/blob/master/web-app/website.jpg)
 
