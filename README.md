@@ -1,5 +1,6 @@
 # Fruit-Detection-and-Counting
 A research project about object detection using deep learning methods
+current support: apple, lemon
 ## Mask R-CNN
 Training pipline please see [here](https://github.com/HaochenQ/Fruit-Recognition-and-Counting/blob/master/maskrcnn_train.ipynb)
 ## YOLOv3
