@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://kit.fontawesome.com/f370051095.js" crossorigin="anonymous"></script>
+  <!-- <link rel="shortcut icon" href="#" /> -->
   <title>Fruit Counting</title>
 </head>
 
@@ -40,81 +41,166 @@
       </div>
     </div>
   </section>
-
-  <div id="root" style="text-align:center;">
+<!--  -->
+  <div id="root" style="text-align:center;" >
     <br>
-    <div id="fileName" class="file has-name" style="margin-inline-start: 29%">
-      <form id="upload-file" method="post">
-        <label class="file-label">
-          <input name="file" class="file-input" type="file" accept=".png, .jpg, .jpeg">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <span class="file-cta">
+    <!-- style="margin-inline-start: 29%" -->
+      <!-- <div id="fileName" class="file has-name"> -->
+ 
+        <form id="upload-file" method="post" style="width:fit-content;margin-inline-start:inherit;margin: 0 auto;">
+          <div class="file is-primary">
+          <label class="file-label" >
+            <input name="file" class="file-input" type="file" accept=".png, .jpg, .jpeg">
+            <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+            <span class="file-cta">
 
-            <span class="file-icon">
-              <i class="fas fa-upload"></i>
+              <span class="file-icon">
+                <i class="fas fa-upload"></i>
+              </span>
+              <span class="file-label">
+                Choose your image…
+              </span>
             </span>
-            <span class="file-label">
-              Choose your image…
+            <span class="file-name">
+              No file chosen
             </span>
-          </span>
-          <span class="file-name">
-            No file chosen
-          </span>
-        </label>
-      </form>
+          </label>
+        </div>
+        </form>
+<br>
+        <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <form id="upload-file" method="post" enctype="multipart/form-data">
+        <fieldset>
+          <label for="file">Select a file</label>
+          <input name="file" type="file">
+        </fieldset>
+      </form> -->
+        <div class="select" style="margin-bottom: auto;">
+          <select name="model" id="model">
+            <option value="yolo">YOLO v3</option>
+            <option value="mask">Mask R-CNN</option>
+          </select>
+        </div>
+        <button id="detect" class="button is-info is-light" style="margin-bottom: 2%;">Detect</button>
+        <!-- style="margin-inline-start: 5%;" -->
 
-      <button id="detect" class="button is-info is-light" style="margin-inline-start: 5%;">Detect</button>
-
-
-      <button id="count" class="button is-warning is-light" style="margin-inline-start: 5%;">
-        <span>Count:2</span>
-      </button>
-    </div>
-
+        <button id="count" class="button is-warning is-light" style="margin-bottom: 2%;">
+          <span>Count:2</span>
+        </button>
+        <button id="time" class="button is-success is-light" style="margin-bottom: 2%;">
+          <span>Time:0</span>
+        </button>
+        <!-- <div id="count" class="is-size-5 has-text-centered has-text-danger has-text-weight-medium">COUNT: 2</div> -->
+      
+   
     <div>
-      <br>
-      <img id="input" src="/static/raw_example.png" height=480 width=640 class="center">
-      <br>
+      <!-- <br> -->
+      <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+      <!-- <img id="input" src="/static/raw_example.png" height=480 width=640 class="center">
+      <br> -->
+      <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
       <img id="output" src="/static/masked_example.png" height=480 width=640 class="center">
     </div>
   </div>
 
   <script>
-    const fileInput = document.querySelector('#fileName input[type=file]');
+    const fileInput = document.querySelector('.file input[type=file]');
     fileInput.onchange = () => {
       if (fileInput.files.length > 0) {
-        const fileName = document.querySelector('#fileName .file-name');
+        const fileName = document.querySelector('.file .file-name');
         fileName.textContent = fileInput.files[0].name;
       }
-      const output = document.getElementById('input');
+      const output = document.getElementById('output');
       output.src = URL.createObjectURL(event.target.files[0]);
-      $("#output").hide()
+      // $("#output").hide()
     }
+
+
+
     $('#detect').click(function () {
-      var form_data = new FormData($('#upload-file')[0]);
-      $("#count").replaceWith(`<button id="loading" class="button is-loading is-light" style="margin-inline-start: 5%;">loading</button>`)
+      // alert("hi");
+      // var form_data = new FormData();
+      // form_data.append("image", $('#upload-file')[0])
+      // var form_data = new FormData($('#upload-file')[0]);
+      // alert(form_data.image)
+      // // Make prediction by calling api /predict
+      // // var dataJson = JSON.stringify(form_data);
+      // let dataJson = form_data
+      let model = $('#model :selected').val();
+      $.ajax({
+        type: 'POST',
+        url: '/model',
+        data: JSON.stringify({
+          model: model
+        }),
+        contentType: 'application/json'
+      })
+      // $.ajax({
+      //   type: 'POST',
+      //   url: '/detect',
+      //   data: {data:},
+      //   async: true,
+      //   error: function (e) {
+      //     console.log(e)
+      //   },
+      // success: function (response) {
+      //   // Get and display the result
+      //   var image = new Image();
+      //   image.src = `data:image/png;base64,${response.img}`;
+      //   document.body.appendChild(image);
+      //   $("#count").text("COUNT:" + response.count);
+      //   // $maksedImg=$('<img />')
+      //   // $('#output')
+      // },
+      //   dataType: "json",
+      //   contentType: "application/json"
+      // });
+      // let form_data = new FormData()
+      // form_data.append("file",$('#upload-file')[0]);
+      let form_data = new FormData($('#upload-file')[0]);
+      // form_data.append("model",model)
+      // $("#output").hide()
+      // $("#input").after(`<div id="loading"><progress class="progress is-small is-dark" max="100"></progress></div>`)
+      $("#count").replaceWith(`<button id="loading" class="button is-loading is-light" style="margin-bottom: 2%;">loading</button>`)
       $.ajax({
         type: 'POST',
         url: '/detect',
+        // data: JSON.stringify({
+        //     model:model,
+        //     image: JSON.stringify(form_data),
+        // }, null, '\t'),
         data: form_data,
+        // contentType: 'application/json',
         contentType: false,
         cache: false,
         processData: false,
         success: function (response) {
+          // Get and display the result
+          // alert("rceived!");
+          // alert(response.count);
+          // alert(response.image);
           var image = new Image(width = 512, height = 512);
           image.src = `data:image/png;base64,${response.image.replace(/^b'|'$/g, '')}`;
           $("#output").attr("src", image.src)
-          $("#output").show()
-          $("#loading").replaceWith(`<button id="count" class="button is-warning is-light" style="margin-inline-start: 5%;"><span>Count:2</span></button>`)
+          // $("#output").show()
+          $("#loading").replaceWith(`<button id="count" class="button is-warning is-light style="margin-bottom: 2%;""><span>Count:2</span></button>`)
           $("#count span").text("Count:" + response.count);
+          $("#time span").text("Time:" + response.time + "s");
 
+          // $maksedImg=$('<img />')
+          // $('#output')
         },
         error: function (e) {
           console.log(e)
         },
       });
+
+
+
+
     });
   </script>
+  <!-- <script src="main.js"></script> -->
 </body>
 
 </html>
