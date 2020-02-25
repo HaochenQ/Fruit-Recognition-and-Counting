@@ -13,6 +13,6 @@
 - Go to http://localhost:5000
 
 
-![image for web-app](https://github.com/HaochenQ/Fruit-Recognition-and-Counting/blob/master/web-app/Screen%20Shot%202020-02-24%20at%206.13.50%20am.png =250x)
+![image for web-app](https://github.com/HaochenQ/Fruit-Recognition-and-Counting/blob/master/web-app/Screen%20Shot%202020-02-24%20at%206.13.50%20am.png)
 
 
