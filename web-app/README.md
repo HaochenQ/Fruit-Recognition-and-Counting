@@ -13,7 +13,7 @@
 - Run fruit_app.py
 - Go to http://localhost:5000
 
-## Try With your Mobile Phont
+## Try With your Mobile Phone
 
 - Make sure your phone and laptop are in the same LAN/WiFi
 - Check the IP address of your laptop/server 
