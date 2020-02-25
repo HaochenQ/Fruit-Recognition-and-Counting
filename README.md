@@ -12,4 +12,4 @@ Training with [darknet](https://github.com/pjreddie/darknet)
 ![small fruit](https://github.com/HaochenQ/Fruit-Recognition-and-Counting/blob/master/web-app/Screen%20Shot%202020-02-25%20at%2010.19.50%20pm.png)
 ![fruit clustering](https://github.com/HaochenQ/Fruit-Recognition-and-Counting/blob/master/web-app/Screen%20Shot%202020-02-25%20at%2010.07.58%20pm.png)
 ## Mask R-CNN Sample
-![mask]()
+![mask](https://github.com/HaochenQ/Fruit-Recognition-and-Counting/blob/master/web-app/lemon.png)
