@@ -8,3 +8,6 @@ Training with [darknet](https://github.com/pjreddie/darknet)
 ![flow chart](https://github.com/HaochenQ/Fruit-Recognition-and-Counting/blob/master/Screen%20Shot%202020-02-25%20at%2010.09.46%20pm.png)
 ## A Simple Demo
 ![flow chart](https://github.com/HaochenQ/Fruit-Recognition-and-Counting/blob/master/web-app/Screen%20Shot%202020-02-24%20at%201.48.41%20pm.png)
+## Small Object Detection && Complex Environment
+![]()
+![fruit clustering]()
