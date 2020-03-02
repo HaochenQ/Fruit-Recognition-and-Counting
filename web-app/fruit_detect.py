@@ -29,7 +29,7 @@ print(ROOT_DIR)
 MODEL_DIR = os.path.join(ROOT_DIR, "logs")
 
 # Local path to trained weights file
-MODEL_WEIGHT_PATH = os.path.join(ROOT_DIR, "./maskrcnn_models/mask_rcnn_fruit_0010.h5")  # 这里输入模型权重的路径
+MODEL_WEIGHT_PATH = os.path.join(ROOT_DIR, "./maskrcnn_models/mask_rcnn_fruit_0016.h5")  # 这里输入模型权重的路径
 # MODEL_WEIGHT_PATH = os.path.join(ROOT_DIR, "mask_rcnn_coco.h5")
 # Download COCO trained weights from Releases if needed
 # if not os.path.exists(MODEL_WEIGHT_PATH):
@@ -45,7 +45,7 @@ class FruitConfig(Config):
     """
     # Give the configuration a recognizable name
     NAME = "fruit"
-
+    BACKBONE = "resnet50"
     # We use a GPU with 12GB memory, which can fit two images.
     # Adjust down if you use a smaller GPU.
     IMAGES_PER_GPU = 1
@@ -54,10 +54,10 @@ class FruitConfig(Config):
     IMAGE_MAX_DIM = 512
 
     # Number of classes (including background)
-    NUM_CLASSES = 1 + 3 # Background + toy
+    NUM_CLASSES = 1 + 2 # Background + toy
 
     # Number of training steps per epoch
-    STEPS_PER_EPOCH = 100
+    STEPS_PER_EPOCH = 60
 
     # Skip detections with < 90% confidence
     DETECTION_MIN_CONFIDENCE = 0.4
