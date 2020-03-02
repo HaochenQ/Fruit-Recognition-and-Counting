@@ -9,7 +9,7 @@
 - Download requirements
 - Download our pre-trained weights from [here](https://drive.google.com/drive/folders/1sdRRR77u6e6WAlcF8sckqzIk1UGq4FLa?usp=sharing)
 - Move "yolo_final.h5" into dir "YOLOv3_model"
-- Move "mask_rcnn_fruit_0010.h5" into dir "maskrcnn_models"
+- Move "mask_rcnn_fruit_0016.h5" into dir "maskrcnn_models"
 - Run fruit_app.py
 - Go to http://localhost:5000
 
