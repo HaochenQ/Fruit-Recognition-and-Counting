@@ -72,7 +72,7 @@ Shapely==1.7.0
 six==1.12.0
 tablib==1.0.0
 tensorboard==2.0.2
-tensorflow==1.15.2
+tensorflow==1.15.4
 tensorflow-estimator==2.0.1
 termcolor==1.1.0
 typed-ast==1.4.0
